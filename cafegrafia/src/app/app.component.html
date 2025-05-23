@@ -1,0 +1,215 @@
+
+<link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+
+<!-- NAVBAR -->
+<nav class="bg-black fixed w-full z-20 top-0 start-0">
+  <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
+    <!-- Logo -->
+    <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <img src="assets/images/cafegrafia.png" class="h-20" alt="Logo Cafegrafía">
+      <span class="self-center text-2xl font-semibold whitespace-nowrap text-white" style="font-family: 'Borel', cursive;">Cafegrafía</span>
+
+    </a>
+
+    <!-- Botón hamburguesa (solo visible en md hacia abajo) -->
+    <button class="md:hidden text-white" (click)="menuAbierto = !menuAbierto">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+
+    <!-- Menú para pantallas grandes -->
+    <div class="hidden md:flex items-center space-x-8">
+      <ul class="flex flex-row space-x-8">
+        <li><a href="#inicio" class="text-white hover:text-blue-400">Inicio</a></li>
+        <li><a href="#especialidades" class="text-white hover:text-blue-400">Especialidades</a></li>
+        <li><a href="#tienda" class="text-white hover:text-blue-400">Nuestra Tienda</a></li>
+      </ul>
+      <button (click)="mostrarGrupo()" class="bg-transparent border border-blue-700 py-1 px-2 rounded-full text-sm text-blue-700 hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out">
+        Mostrar Grupo
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- SIDEBAR: visible solo en móviles/tablets -->
+<div class="fixed top-0 left-0 h-full w-64 bg-black text-white z-40 transform transition-transform duration-300 ease-in-out"
+     [class.-translate-x-full]="!menuAbierto"
+     [class.translate-x-0]="menuAbierto">
+  <div class="flex justify-between items-center p-4 border-b border-gray-700">
+    <span class="text-xl font-bold">Menú</span>
+    <button (click)="menuAbierto = false">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+  <ul class="p-4 space-y-4">
+    <li><a href="#inicio" class="block hover:text-blue-400">Inicio</a></li>
+    <li><a href="#especialidades" class="block hover:text-blue-400">Especialidades</a></li>
+    <li><a href="#tienda" class="block hover:text-blue-400">Nuestra Tienda</a></li>
+    <li>
+      <button (click)="mostrarGrupo()" class="w-full text-left border border-blue-700 py-1 px-2 rounded-full text-sm text-blue-700 hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out">
+        Mostrar Grupo
+      </button>
+    </li>
+  </ul>
+</div>
+
+<!-- BACKDROP para cerrar el menú tocando fuera -->
+<div *ngIf="menuAbierto"
+     class="fixed inset-0 bg-black opacity-50 z-30 md:hidden"
+     (click)="menuAbierto = false">
+</div>
+
+
+
+
+<div *ngIf="mostrarInformacionGrupo" class="flotante">
+  <div class="contenido-mensaje">
+    <h2 class="text-2xl font-semibold mb-4">Información Empleados del Mes</h2>
+    <div class="flex items-center mb-2">
+      <img src="assets/images/juanjo.jpg" alt="Avatar Integrante 1" class="h-10 w-10 rounded-full mr-2">
+      <p class="text-left"><strong>Integrante 1:</strong> Juan José Mayén Sandoval | 0900-24-3623</p>
+    </div>
+    <div class="flex items-center mb-2">
+      <img src="assets/images/brayan.png" alt="Avatar Integrante 2" class="h-10 w-10 rounded-full mr-2">
+      <p class="text-left"><strong>Integrante 2:</strong> Brayan Ismael Cifuentes Silvestre | 0900-24-1814</p>
+    </div>
+    <div class="flex items-center mb-2">
+      <img src="assets/images/esteban.png" alt="Avatar Integrante 2" class="h-10 w-10 rounded-full mr-2">
+      <p class="text-left"><strong>Integrante 3:</strong> Esteban Esau España Ruiz | 0900-24-3250</p>
+    </div>
+    <div class="flex items-center mb-2">
+      <img src="assets/images/jonathan.png" alt="Avatar Integrante 2" class="h-10 w-10 rounded-full mr-2">
+      <p class="text-left"><strong>Integrante 4:</strong> Jhonathan Enmanuel Rodas Zepeda | 0900-14-8479</p>
+    </div>
+    <div class="flex items-center mb-2">
+      <img src="assets/images/andres.png" alt="Avatar Integrante 2" class="h-10 w-10 rounded-full mr-2">
+      <p class="text-left"><strong>Integrante 5:</strong> Fredy Andrés López Labbé | 0900-24-1814</p>
+    </div>
+    <!-- Agrega más información del grupo aquí -->
+    <button (click)="cerrarMensaje()" class="mt-4 bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-600">Cerrar</button>
+  </div>
+</div>
+
+
+
+<div id="inicio"
+     class="relative bg-cover bg-center text-white min-h-screen"
+     [ngStyle]="{'background-image': 'url(assets/images/interior.png)'}">
+
+  <!-- Capa oscura -->
+  <div class="absolute inset-0 bg-black/50"></div>
+
+  <!-- Contenido -->
+  <div class="relative z-10 text-center px-8 py-32">
+    <p class="italic text-xl mb-6 mt-40">"Donde cada sorbo inspira una nueva página"</p>
+    <p class="mb-4 text-lg">
+      Sumérgete en un ambiente cálido rodeado de libros, aroma a café recién molido y rincones pensados para disfrutar y crear.
+    </p>
+    <h3 class="text-xl font-semibold mb-2">Lo que ofrecemos:</h3>
+    <ul class="mb-4 text-lg">
+      <li>Variedad de cafés de especialidad</li>
+      <li>Espacios cómodos para leer, estudiar o trabajar</li>
+      <li>Eventos literarios semanales y presentaciones de autores</li>
+      <li>Wi-Fi gratuito y enchufes en todas las mesas</li>
+      <li>Postres artesanales</li>
+    </ul>
+    <p class="mb-4 font-bold text-3xl text-white">¡Visítanos y vive la experiencia!</p>
+  </div>
+</div>
+
+
+
+
+<div id="especialidades"
+     class="min-h-screen py-20 px-8 bg-gradient-to-br from-[#3b2317] via-[#2a1a12] to-[#1b0e07] text-white">
+
+  <h2 class="text-gradient text-center text-6xl font-semibold mb-20 text-yellow-100 mt-40">Especialidades</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-7xl mx-auto">
+<ng-container *ngFor="let item of especialidades">
+  <div class="flex flex-col items-center text-center cursor-pointer" (click)="abrirModal(item)">
+    <img [src]="item.img"
+         alt="Imagen"
+         class="h-80 w-70 object-contain mb-6 shadow-xl shadow-black/60 rounded-lg animated-image"
+         [ngClass]="{ 'visible': seccionVisible }" />
+    <h2 class="text-center text-lg font-semibold mb-20 text-yellow-100">{{ item.descripcion }}</h2>
+  </div>
+</ng-container>
+
+  </div>
+</div>
+
+
+
+
+
+<div id="tienda" class="min-h-screen p-8 bg-gray-300" [ngStyle]="{'background-image': 'url(assets/images/interior.png)', 'background-size': 'cover', 'background-position': 'center'}">
+  <h2 class="text-center text-6xl font-semibold mb-4 text-gradient2 mt-40">Nuestra Tienda</h2>
+
+  <div class="max-w-screen-lg mx-auto">
+    <p class="mb-8 text-lg text-center text-white">
+      Nuestra tienda física que será el principal punto de venta, está ubicada en la ciudad de Guatemala, 
+      en la 12 calle, zona 14. Esta elección se tomó por la densidad poblacional y el alto tráfico de personas, 
+      lo que nos brinda mayores oportunidades de venta.
+    </p>
+
+    <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
+      <!-- Imagen principal representativa de la tienda -->
+      <div class="md:w-1/2 w-full">
+        <img src="assets/images/1.png" alt="Imagen del Local" class="w-full h-auto rounded-lg shadow-md">
+      </div>
+
+      <!-- Mapa de Google Maps -->
+      <div class="md:w-1/2 w-full">
+        <div class="w-full aspect-video rounded-lg shadow-md overflow-hidden">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.123456789012!2d-90.51500000000001!3d14.604000000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8589a1a123456789%3A0x123456789abcdef!2s12%20Calle%20Zona%2014%2C%20Ciudad%20de%20Guatemala%2C%20Guatemala!5e0!3m2!1sen!2s!4v1234567890123" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div *ngIf="modalAbierto"
+     class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center px-4">
+
+  <!-- Contenido del modal -->
+  <div class="relative bg-transparent w-full max-w-6xl flex flex-col md:flex-row items-center justify-center gap-10 py-10">
+
+    <!-- Botón cerrar -->
+    <button (click)="cerrarModal()"
+            class="absolute top-4 right-4 text-white text-3xl font-bold hover:text-red-400 z-50">&times;</button>
+
+    <!-- Imagen (izquierda en desktop, arriba en móvil) -->
+    <div class="w-full md:w-1/2 flex justify-center mb-6 md:mb-0">
+      <img [src]="selectedEspecialidad?.img"
+           alt="Detalle"
+           class="max-h-[400px] w-auto object-contain drop-shadow-2xl transition-transform duration-300">
+    </div>
+
+    <!-- Descripción (derecha en desktop, abajo en móvil) -->
+    <div class="w-full md:w-1/2 text-white text-center md:text-left px-4">
+      <h3 class="text-3xl md:text-4xl font-bold mb-4 text-yellow-100">Especialidad</h3>
+      <p class="text-lg md:text-2xl leading-relaxed">{{ selectedEspecialidad?.descripcion }}</p>
+    </div>
+
+  </div>
+</div>
+
+
+
+<router-outlet />
