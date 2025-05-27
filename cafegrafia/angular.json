@@ -31,7 +31,8 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-             "src/assets"
+             "src/assets",
+             "src/_redirects"
             ],
             "styles": [
               "src/styles.css",
@@ -53,8 +54,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumWarning": "70kB",
+                  "maximumError": "90kB"
                 }
               ],
               "outputHashing": "all"
