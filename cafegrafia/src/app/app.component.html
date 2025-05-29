@@ -25,6 +25,7 @@
       <ul class="flex flex-row space-x-8">
         <li><a href="#inicio" class="text-white hover:text-blue-400">Inicio</a></li>
         <li><a href="#especialidades" class="text-white hover:text-blue-400">Especialidades</a></li>
+        <li><a href="#servicio-especial" class="text-white hover:text-blue-400">Nuestro servicio</a></li>
         <li><a href="#tienda" class="text-white hover:text-blue-400">Nuestra Tienda</a></li>
       </ul>
       <button (click)="mostrarGrupo()" class="bg-transparent border border-blue-700 py-1 px-2 rounded-full text-sm text-blue-700 hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out">
@@ -51,6 +52,7 @@
   <ul class="p-4 space-y-4">
     <li><a href="#inicio" class="block hover:text-blue-400">Inicio</a></li>
     <li><a href="#especialidades" class="block hover:text-blue-400">Especialidades</a></li>
+    <li><a href="#servicio-especial" class="block hover:text-blue-400">Nuestro servicio</a></li>
     <li><a href="#tienda" class="block hover:text-blue-400">Nuestra Tienda</a></li>
     <li>
       <button (click)="mostrarGrupo()" class="w-full text-left border border-blue-700 py-1 px-2 rounded-full text-sm text-blue-700 hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out">
@@ -127,25 +129,120 @@
 
 
 
+<!-- SECCIÓN 1: Especialidades con contenedores glassmorphism -->
 <div id="especialidades"
      class="min-h-screen py-20 px-8 bg-gradient-to-br from-[#3b2317] via-[#2a1a12] to-[#1b0e07] text-white">
 
-  <h2 class="text-gradient text-center text-6xl font-semibold mb-20 text-yellow-100 mt-40">Especialidades</h2>
+  <h2 class="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-10 sm:mb-16 md:mb-20 text-yellow-100 mt-20 sm:mt-30 md:mt-40 drop-shadow-2xl">
+    Especialidades
+  </h2>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-7xl mx-auto">
-<ng-container *ngFor="let item of especialidades">
-  <div class="flex flex-col items-center text-center cursor-pointer" (click)="abrirModal(item)">
-    <img [src]="item.img"
-         alt="Imagen"
-         class="h-80 w-70 object-contain mb-6 shadow-xl shadow-black/60 rounded-lg animated-image"
-         [ngClass]="{ 'visible': seccionVisible }" />
-    <h2 class="text-center text-lg font-semibold mb-20 text-yellow-100">{{ item.descripcion }}</h2>
-  </div>
-</ng-container>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+    <ng-container *ngFor="let item of especialidades">
+      <div class="group cursor-pointer" (click)="abrirModal(item)">
+        
+        <!-- CONTENEDOR GLASSMORPHISM para cada especialidad -->
+        <div class="relative backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-6 shadow-2xl hover:shadow-yellow-100/20 transition-all duration-500 hover:scale-105 hover:bg-white/15">
+          
+          <!-- Imagen con efecto líquido -->
+          <div class="relative w-full h-80 mb-6 overflow-hidden rounded-xl">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10"></div>
+            <img [src]="item.img"
+                 [alt]="item.nom"
+                 class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                 [ngClass]="{ 'opacity-100 translate-y-0': seccionVisible, 'opacity-0 translate-y-4': !seccionVisible }" />
+            
+            <!-- Efecto de ondas en hover -->
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-100/20 to-transparent animate-pulse"></div>
+            </div>
+          </div>
 
+          <!-- Texto con efecto glow -->
+          <div class="relative">
+            <h3 class="text-lg font-bold text-yellow-100 group-hover:text-yellow-200 transition-colors duration-300 text-center drop-shadow-lg">
+              {{ item.nom }}
+            </h3>
+            
+            <!-- Línea decorativa animada -->
+            <div class="w-0 group-hover:w-full h-0.5 bg-gradient-to-r from-yellow-100 to-amber-200 mx-auto mt-2 transition-all duration-500"></div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </div>
 
+<!-- SECCIÓN 2: Servicio Especial con contenedor glassmorphism -->
+<div id="servicio-especial"
+     class="min-h-screen py-20 px-8 bg-gradient-to-br from-[#3b2317] via-[#2a1a12] to-[#1b0e07] text-white">
+
+  <h2 class="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-10 sm:mb-16 md:mb-20 text-yellow-100 mt-20 sm:mt-30 md:mt-40 drop-shadow-2xl">
+    Nuestro servicio especial
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-6xl mx-auto items-center">
+    
+    <!-- Imagen con contenedor glassmorphism -->
+    <div class="flex justify-center">
+      <div class="relative group">
+        <!-- CONTENEDOR GLASSMORPHISM para la imagen -->
+        <div class="backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl p-4 shadow-2xl transition-all duration-500 hover:scale-105">
+          <img src="assets/images/servicioImage.png"
+               alt="Rincón de Lectura Guiada"
+               class="h-96 w-auto object-cover rounded-xl transition-all duration-500 group-hover:scale-105" />
+        </div>
+        
+        <!-- Efecto de profundidad -->
+        <div class="absolute -inset-4 bg-gradient-to-r from-yellow-100/20 to-amber-200/10 rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+      </div>
+    </div>
+
+    <!-- CONTENEDOR GLASSMORPHISM para el texto -->
+    <div class="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-8 shadow-xl">
+      <h3 class="text-2xl font-bold text-yellow-100 mb-6 drop-shadow-lg">Rincón de Lectura Guiada</h3>
+      
+      <div class="space-y-6 text-gray-200">
+        <p class="leading-relaxed">
+          Cada semana, elegimos un cuento o fragmento literario especial para compartir con nuestros visitantes. Puedes leerlo en tu mesa o escanear un código QR para disfrutarlo desde tu dispositivo.
+        </p>
+        
+        <p class="leading-relaxed">
+          <strong class="text-yellow-100">Todos los viernes</strong>, realizamos una charla abierta para conversar sobre el texto de la semana. No necesitas inscribirte ni ser un experto: solo ven, escucha, opina o simplemente disfruta del ambiente.
+        </p>
+        
+<div>
+  <p class="text-yellow-100 font-bold mb-4">¿Por qué te gustará?</p>
+  <div class="space-y-3">
+    
+    <div class="flex items-center space-x-3 group/item">
+      <i class="fas fa-book-open text-yellow-200 text-2xl group-hover/item:scale-125 transition-transform duration-300"></i>
+      <span class="group-hover/item:text-yellow-100 transition-colors duration-300">
+        Descubres nuevas historias mientras tomas café.
+      </span>
+    </div>
+    
+    <div class="flex items-center space-x-3 group/item">
+      <i class="fas fa-handshake text-yellow-200 text-2xl group-hover/item:scale-125 transition-transform duration-300"></i>
+      <span class="group-hover/item:text-yellow-100 transition-colors duration-300">
+        Conectas con otras personas que disfrutan la lectura.
+      </span>
+    </div>
+    
+    <div class="flex items-center space-x-3 group/item">
+      <i class="fas fa-tags text-yellow-200 text-2xl group-hover/item:scale-125 transition-transform duration-300"></i>
+      <span class="group-hover/item:text-yellow-100 transition-colors duration-300">
+        Recibes descuentos especiales durante la charla.
+      </span>
+    </div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -169,14 +266,13 @@
       <!-- Mapa de Google Maps -->
       <div class="md:w-1/2 w-full">
         <div class="w-full aspect-video rounded-lg shadow-md overflow-hidden">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.123456789012!2d-90.51500000000001!3d14.604000000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8589a1a123456789%3A0x123456789abcdef!2s12%20Calle%20Zona%2014%2C%20Ciudad%20de%20Guatemala%2C%20Guatemala!5e0!3m2!1sen!2s!4v1234567890123" 
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.9540720414825!2d-90.51513879911144!3d14.658547907194139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8589a209c9c7d235%3A0xead54ff3eb12540d!2sFacultad%20Ingenieria%20UMG!5e0!3m2!1ses-419!2sgt!4v1748532942514!5m2!1ses-419!2sgt" 
             width="100%" 
             height="100%" 
             style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy">
-          </iframe>
+            allowfullscreen=""
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>
@@ -187,23 +283,20 @@
 <div *ngIf="modalAbierto"
      class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center px-4">
 
-  <!-- Contenido del modal -->
   <div class="relative bg-transparent w-full max-w-6xl flex flex-col md:flex-row items-center justify-center gap-10 py-10">
 
-    <!-- Botón cerrar -->
     <button (click)="cerrarModal()"
             class="absolute top-4 right-4 text-white text-3xl font-bold hover:text-red-400 z-50">&times;</button>
 
-    <!-- Imagen (izquierda en desktop, arriba en móvil) -->
     <div class="w-full md:w-1/2 flex justify-center mb-6 md:mb-0">
       <img [src]="selectedEspecialidad?.img"
            alt="Detalle"
            class="max-h-[400px] w-auto object-contain drop-shadow-2xl transition-transform duration-300">
     </div>
 
-    <!-- Descripción (derecha en desktop, abajo en móvil) -->
     <div class="w-full md:w-1/2 text-white text-center md:text-left px-4">
-      <h3 class="text-3xl md:text-4xl font-bold mb-4 text-yellow-100">Especialidad</h3>
+      <!-- Mostrar el nom en lugar de "Especialidad" -->
+      <h3 class="text-3xl md:text-4xl font-bold mb-4 text-yellow-100">{{ selectedEspecialidad?.nom }}</h3>
       <p class="text-lg md:text-2xl leading-relaxed">{{ selectedEspecialidad?.descripcion }}</p>
     </div>
 

@@ -16,17 +16,26 @@ selectedEspecialidad: any = null;
  
    especialidades = [
     {
+      nom: "Pastel de Chocolate",
       img: 'assets/images/pastel.png',
       descripcion: 'Pastel individual de chocolate con centro líquido'
     },
     {
+      nom: "Cafe Frappé",
       img: 'assets/images/versoHelado.png',
       descripcion: 'Frappé con vainilla y cacao, servido en vaso decorado con tinta de chocolate'
     },
+
     {
+      nom: "Champurrada Artesal",
+      img: 'assets/images/champurrada.png',
+      descripcion: 'Crujientes. Un pan tradicional perfecto para acompañar tu café y sumergirte en una buena lectura.'
+    },
+        {
+      nom: "Tarjeta Literaria",
       img: 'assets/images/tarjetaCafe.png',
       descripcion: 'En cada pedido, llévate una tarjeta con una recomendación literaria.'
-    }
+    },
   ];
 
   abrirModal(especialidad: any): void {
